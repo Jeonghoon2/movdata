@@ -11,7 +11,7 @@ class ListDataSave:
         """ 초기 데이터 셋팅 """
         self.read_url : str = f"" # request에 읽어 들일 URL
         self.write_path : str = os.path.expanduser('~/mov/datas') # 읽어들인 모든 데이터를 저장할 경로
-        self.max_page : int = None
+        self.max_page : int = int(1e9)
         self.per_page : int = 10 # 페이지당 읽어 들일 개수
         self.cur_page : int = 1 # 읽어들일 현재 페이지 번호
         self.req_intervar : int = 1 # request를 읽어 들일 인터벌
@@ -31,7 +31,7 @@ class ListDataSave:
 
         # 만약 max_page가 None이 아닐 경우
         if self.max_page:
-            total_page = self.max_page + 1
+            total_page = min(total_page, self.max_page)
 
         # # 모든 데이터 호출
         all_data = []
@@ -48,12 +48,17 @@ class ListDataSave:
 
     """ 메인 Function """
     def read_data(self) -> json:
+
         param_str = f"&page={self.cur_page}"
-        print(param_str)
+
+
+
         for key, value in self.params.items():
             param_str += f"&{key}={value}"
 
-        response = requests.get(f"{self.read_url}{param_str}")
+        request_url = f"{self.read_url}{param_str}"
+        print(request_url)
+        response = requests.get(request_url)
 
         return response.json()
 
