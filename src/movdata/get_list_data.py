@@ -49,7 +49,7 @@ class ListDataSave:
     """ 메인 Function """
     def read_data(self) -> json:
 
-        param_str = f"&page={self.cur_page}"
+        param_str = f"&curPage={self.cur_page}"
 
 
 
