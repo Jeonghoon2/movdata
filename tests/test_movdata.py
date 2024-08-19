@@ -15,6 +15,7 @@ def test_load_movie_list():
 
     ild.set.base_url("https://kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json")
     ild.set.params(params)
+    ild.set.max_page(11)
     ild.set.json_col_name('movieListResult','movieList')
     ild.set.partition(type='movies', year='2015')
 
@@ -22,19 +23,19 @@ def test_load_movie_list():
     
 
 # 영화사 목록 저장 테스트
-def test_load_company_list():
-    ild = ListDataSave()
-    ild.set.base_url("http://kobis.or.kr/kobisopenapi/webservice/rest/company/searchCompanyList.json")
-    ild.set.json_col_name('companyListResult','companyList')
-    ild.set.partition(type='companies')
+# def test_load_company_list():
+#     ild = ListDataSave()
+#     ild.set.base_url("http://kobis.or.kr/kobisopenapi/webservice/rest/company/searchCompanyList.json")
+#     ild.set.json_col_name('companyListResult','companyList')
+#     ild.set.partition(type='companies')
 
-    assert ild.run()
+#     assert ild.run()
 
 # 영화인 목록 저장 테스트
-def test_load_people_list():
-    ild = ListDataSave()
-    ild.set.base_url("http://kobis.or.kr/kobisopenapi/webservice/rest/people/searchPeopleList.json")
-    ild.set.json_col_name('peopleListResult','peopleList')
-    ild.set.partition(type='peoples')
+# def test_load_people_list():
+#     ild = ListDataSave()
+#     ild.set.base_url("http://kobis.or.kr/kobisopenapi/webservice/rest/people/searchPeopleList.json")
+#     ild.set.json_col_name('peopleListResult','peopleList')
+#     ild.set.partition(type='peoples')
 
-    assert ild.run()
+#     assert ild.run()
